@@ -5,10 +5,10 @@ on:
 name: Print Hello World 
 jobs:
   latest-version:
-    name: Get Latest Release
+    name: Executing the Jobs
     runs-on: ubuntu-latest #OS
     steps:
       - uses: actions/checkout@master
-      - name: Consumption of the output
+      - name: Printing the Output.
         run: |
-          echo "hello world"
+          echo "Hi All, This is Hello world !!"
