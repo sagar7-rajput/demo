@@ -1,0 +1,14 @@
+on:
+  push:
+    branches: [main]
+    
+name: Print Hello World 
+jobs:
+  latest-version:
+    name: Get Latest Release
+    runs-on: ubuntu-latest #OS
+    steps:
+      - uses: actions/checkout@master
+      - name: Consumption of the output
+        run: |
+          echo "hello world"
