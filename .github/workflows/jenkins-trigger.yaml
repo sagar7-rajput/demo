@@ -1,22 +1,19 @@
 name: CI
 on:
   push:
-    branches: [ "jenkins-trigger" ]
+    branches: [ "jenkins-on-ec2" ]
 jobs:
-  jenkins_job:
+  build:
     name: building
     runs-on: ubuntu-latest
     steps:
     - name: Checkout App Code 
       uses: actions/checkout@master
-    - name: Building jenkins_job
+        
+    - name: Create release version for bump_version_major
       env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          jenkins_url="http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080"
-          jenkins_project="pipeline-07092022"
-          user="pulkit_apisero"
-          crumb=$(curl -u "pulkit_apisero:admin" -s '$jenkins_url/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+          crumb=$(curl -u "pulkit_apisero:admin" -s 'http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
           echo $crumb
-          curl -X POST -u $user:117e121e8bfab4b23e8bc8d9215ba316b7 $jenkins_url/job/$jenkins_project/build
-
+          curl -X POST -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/build
