@@ -1,0 +1,16 @@
+name: CI
+on:
+  push:
+    branches: [ "jenkins-trigger" ]
+jobs:
+  build:
+    name: building
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout App Code 
+      uses: actions/checkout@master
+    - name: Create release version for bump_version_major
+      env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          curl -X POST -u "pulkit_apisero:admin" http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/build
