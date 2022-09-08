@@ -3,19 +3,19 @@ on:
   push:
     branches: [ "jenkins-trigger" ]
 jobs:
-  build:
-    name: building
+  Jenkins_Job:
+    name: Jenkins_Job
     runs-on: ubuntu-latest
     steps:
     - name: Checkout App Code 
       uses: actions/checkout@master
         
-    - name: Create release version for bump_version_major
+    - name: Building Jenkins_Job
       env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
           crumb=$(curl -u "pulkit_apisero:admin" -s 'http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
           echo $crumb
           curl -X POST -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/build
-          result=$(curl -u "pulkit_apisero:admin" -s 'http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/xml?xpath=concat(//personalstatus,":",//result)')
+          result=$(curl -u "pulkit_apisero:admin" -s 'http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/xml?xpath=concat(//result,":",//result)')
           echo $result
