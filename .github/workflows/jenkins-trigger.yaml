@@ -18,5 +18,5 @@ jobs:
           echo $crumb
           curl -X POST -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/build
           curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq .result
-          curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq ".actions[].causes[0]"
+          curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq ".actions[1].causes[0]"
           
