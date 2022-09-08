@@ -17,6 +17,6 @@ jobs:
           crumb=$(curl -u "pulkit_apisero:admin" -s 'http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
           echo $crumb
           curl -X POST -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/build
-          curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq .result
-          curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq ".actions[0].causes[0]"
+          echo Latest Status : $(curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq .result)
+          echo Report is : $(curl -s -X GET -u pulkit_apisero:117e121e8bfab4b23e8bc8d9215ba316b7 http://ec2-3-16-151-254.us-east-2.compute.amazonaws.com:8080/job/pipeline-07092022/lastBuild/api/json | jq ".actions[0].causes[0]")
           
